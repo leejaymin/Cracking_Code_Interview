@@ -1,3 +1,5 @@
+# 포기함
+
 def count_inversions(A, numSwap=0):
     if len(A) <= 1:
         return A, numSwap
@@ -11,13 +13,14 @@ def count_inversions(A, numSwap=0):
         if left[i] < right[j]:
             A[k] = left[i]
             i += 1
-            numSwap += 1
         elif left[i] > right[j]:
+            #numSwap += 1
+            numSwap += (len(left)-1) - i + 1 # count swap
             A[k] = right[j]
             j += 1
-            numSwap += 1
         else:
-            j+=1
+            A[k] = right[j]
+            j += 1
         k += 1
 
     if i == len(left):  # 만약 left의 원소를 모두 채웠고, right가 남아있을 때.
@@ -35,10 +38,8 @@ def count_inversions(A, numSwap=0):
     return A, numSwap  # 마지막으로 정렬된 list를 리턴합니다.
 
 
-t = int(input().strip())
-for a0 in range(t):
-    n = int(input().strip())
-    arr = list(map(int, input().strip().split(' ')))
+if __name__ == "__main__":
+    arr = [2,1,3,1,2]
     numSwap = 0
     sortedA, numSwap = count_inversions(arr, numSwap)
     print(numSwap)
