@@ -1,7 +1,7 @@
 
 input = [1,2,3,4,5,6,7,8,9,10]
 
-target = 9
+target = 1
 index = 0
 
 min = 0
@@ -11,9 +11,9 @@ mid = int(len(input)/2)
 step = 1
 while (target != input[mid]):
     if input[mid] < target:
-        min = mid
+        min = mid +1
     else:
-        max = mid
+        max = mid -1
 
     mid = int((max+min)/2)
     step +=1
