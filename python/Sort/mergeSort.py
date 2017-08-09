@@ -4,8 +4,8 @@ import random
 # Space Complexity O(n)
 
 def recursiveMergeSort(A):
-    ### Base case ###
 
+    ### Base case ###
     if len(A) <= 1:
         return A
 
@@ -36,11 +36,40 @@ def recursiveMergeSort(A):
             k += 1
     return A #마지막으로 정렬된 list를 리턴합니다.
 
+# to memorize
+def recursiveMergeSort2(A):
+    if len(A) <= 1:
+        return A
+
+    left = recursiveMergeSort2(A[:int(len(A)/2)])
+    right = recursiveMergeSort2(A[int(len(A)/2):])
+
+    merge = [[] for _ in range(len(left)+len(right))]
+    i, j, k = 0, 0, 0
+
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            merge[k] = left[i]
+            i += 1
+        else:
+            merge[k] = right[j]
+            j += 1
+        k += 1
+
+    if i == len(left):
+        merge[k:] = right[j:]
+    else:
+        merge[k:] = left[i:]
+
+    return merge
 
 if __name__ == "__main__":
 
-    A=[random.randint(1,100) for _ in range(10)]
+    A = [random.randint(1,100) for _ in range(10)]
     print("unsorted List:")
     print(A)
     print("Sorted List:")
     print(recursiveMergeSort(A))
+    random.shuffle(A)
+    print(A)
+    print(recursiveMergeSort2(A))

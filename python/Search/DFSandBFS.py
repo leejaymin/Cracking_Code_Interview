@@ -14,6 +14,12 @@ def recursiveDFS(graph,node, visited=[]):
             recursiveDFS(graph, neighbor, visited)
     return visited
 
+
+# For testing
+def recursiveDFS2(graph,node, visited=[]):
+    pass
+
+
 def BFS(graph,node, visited=[]):
     queue = [node] # 맨 처음 버텍스를 삽입 한다.
     while queue: # 큐가 비었는지 확인 한다
@@ -25,6 +31,19 @@ def BFS(graph,node, visited=[]):
     return visited
 
 
+# For Testing
+def BFS2(graph, node, visited=[]):
+    queue = [node]
+    visited.append(node)
+
+    while queue:
+        current = queue.pop()
+        for neighbor in graph.adjacentList[current]:
+            if neighbor not in visited:
+                visited.append(neighbor)
+                queue.insert(0, neighbor)
+
+    return visited
 
 if __name__ == "__main__":
 
@@ -41,6 +60,9 @@ if __name__ == "__main__":
     print(graphObj.adjacentList)
 
     print("DFS Traverse:")
-    print(recursiveDFS(graphObj,0))
+    print(recursiveDFS(graphObj, 0))
+    print(recursiveDFS2(graphObj, 0))
+
     print("BFS Traverse:")
-    print(BFS(graphObj,0))
+    print(BFS(graphObj, 0))
+    print(BFS2(graphObj, 0))
