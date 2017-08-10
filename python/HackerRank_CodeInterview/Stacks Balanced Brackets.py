@@ -14,7 +14,7 @@ def is_matched(expression):
     return not stack
 
 print(os.getcwd())
-f = open("input09.txt","r")
+f = open("input09.txt", "r")
 t = int(f.readline())
 for a0 in range(t):
     expression = f.readline().strip()

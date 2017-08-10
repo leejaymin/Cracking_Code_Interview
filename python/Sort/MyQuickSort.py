@@ -1,4 +1,3 @@
-
 import random
 
 # 아까 말씀드렸다시피, pivot을 선택한 후에(parition 함수의 결과값으로 pivot의 최종 index가 나옵니다.) recursive call로 쪼갭니다.
@@ -23,11 +22,9 @@ def partition(A, start, end):
     A[pivot], A[wall] = A[wall], A[pivot] # 마지막으로 pivot을 자신보다 큰 원소들의 첫번째 원소와 바꿔줍니다. (전반부, 후반부를 나누기 위해서)
     return wall
 
-
 # test 1
 def quicksort2(A, start, end):
-    A partition2(A,)
-    return A
+    pass
 
 # test 2
 def partition2(A, start, end):
@@ -38,5 +35,5 @@ if __name__ == "__main__":
     print(A)
     print(quicksort(A, 0, len(A)-1))
     random.shuffle(A)
+    print(A)
     print(quicksort2(A, 0, len(A)-1))
-
