@@ -1,45 +1,73 @@
 
 class Node(object):
-    def __init__(self, data=None, next_node=None):
+    def __init__(self, data=None, next_node=None, prev_node=None):
         self.data = data
         self.next = next_node
+        self.prev = prev_node
 
-def Insert(head, data):
-    if head == None:
-        return Node(data, None)
+    def __str__(self):
+        return str(self.data)
 
-    current = head
-    # reach the last node
-    while current.next != None:
-        current = current.next
+class LinkedList:
+    def __init__(self, data=None):
+        self.head = None
+        self.tail = None
+        if data is not None:
+            self.insert(data)
 
-    current.next = Node(data, None)
-    return head
+    # for print
+    def __iter__(self):
+        current = self.head
+        while current:
+            yield current
+            current = current.next
 
-def delete(head):
-    if head == None:
-        return "It is empty!"
+    def __str__(self):
+        values = [str(x) for x in self]
+        return ' -> '.join(values)
 
-    while head.next is not None:
-        if head.next.next is None:
-            head.next = None
-            break
-        head = head.next
+    def __len__(self):
+        result = 0
+        node = self.head
+        while node:
+            result += 1
+            node = node.next
+        return result
 
-def print_list(head):
-    if head == None:
-        return
-    else:
-        print(head.data)
+    def insert(self, data):
+        if self.head is None:
+            self.tail = self.head = Node(data)
+        else:
+            self.tail.next = Node(data)
+            self.tail = self.tail.next
+        return self.tail
 
-    print_list(head.next)
+    def delete(self, data):
+        if self.head is None:
+            print("It is empty!")
+            return
+        elif self.head.data is data:
+            self.head = self.head.next
+        else:
+            current = self.head
+            while current.next is not None:
+                if current.data is data:
+                    print("Delete the number: %d"%(data))
+                    current.data = current.next.data
+                    current.next = current.next.next
+                    return
+                current = current.next
+            print("It is not founded")
+
 
 if __name__ == "__main__":
-    head = Insert(None,1)
-    head = Insert(head,2)
-    head = Insert(head, 3)
-    head = Insert(head, 4)
-    delete(head)
-    delete(head)
-    head = Insert(head, 5)
-    print_list(head)
+    ll = LinkedList()
+    ll.insert(1)
+    ll.insert(2)
+    ll.insert(3)
+    ll.insert(4)
+    ll.insert(5)
+    print(ll)
+    ll.delete(3)
+    ll.delete(6)
+    print(ll)
